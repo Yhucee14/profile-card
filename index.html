@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uchenna Chukwu • Profile</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #edece3;
+            --bg-tertiary: #f0ede6;
+            --text-primary: #1c1b18;
+            --text-secondary: #5c5a54;
+            --text-hint: #8a877f;
+            --border-subtle: rgba(28, 27, 24, 0.08);
+            --border-mid: rgba(28, 27, 24, 0.14);
+            --accent: #534AB7;
+            --accent-bg: #f0edff;
+            --accent-text: #3f3789;
+            --success-bg: #f0f7e8;
+            --success-text: #3f6b1f;
+            --coral-bg: #fdf0eb;
+            --coral-text: #9c3f22;
+            --radius-md: 8px;
+            --radius-lg: 14px;
+            --radius-xl: 22px;
+            --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-secondary);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        /* Card */
+        article[data-testid="test-profile-card"] {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-mid);
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 680px;
+            box-shadow: 0 10px 30px rgba(28, 27, 24, 0.06);
+            overflow: hidden;
+        }
+
+        /* Hero + Avatar */
+        .card-hero {
+            background: linear-gradient(90deg, #f0edff, #fdf4eb);
+            height: 92px;
+            position: relative;
+        }
+
+        .avatar-wrapper {
+            position: absolute;
+            bottom: -42px;
+            left: 28px;
+        }
+
+        figure.avatar-figure {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            border: 4px solid var(--bg-primary);
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        figure.avatar-figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Body */
+        .card-body {
+            padding: 3.25rem 1.75rem 1.75rem;
+        }
+
+        .name-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 6px;
+        }
+
+        h2[data-testid="test-user-name"] {
+            font-size: 21px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.25;
+        }
+
+        .role-badge {
+            font-size: 11.5px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            background: var(--accent-bg);
+            color: var(--accent-text);
+        }
+
+        p[data-testid="test-user-bio"] {
+            font-size: 14.5px;
+            line-height: 1.65;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+        }
+
+        /* Time */
+        .time-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 320px) {
+            .time-row {
+                display: block;
+            }
+
+            .time-label {
+                font-size: 8px;
+                font-weight: 200;
+                color: var(--text-hint);
+
+            }
+
+        }
+
+
+        .time-label {
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-hint);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        [data-testid="test-user-time"] {
+            font-family: ui-monospace, monospace;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 3px 9px;
+            letter-spacing: 0.5px;
+        }
+
+        hr.divider {
+            border: none;
+            border-top: 1px solid var(--border-subtle);
+            margin: 1.75rem 0;
+        }
+
+        /* Social Links */
+        .section-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-hint);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 9px;
+        }
+
+        .social-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .social-list a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent-text);
+            background: var(--accent-bg);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .social-list a:hover,
+        .social-list a:focus-visible {
+            background: #e6e2ff;
+            color: #2c2566;
+        }
+
+        .social-icon {
+            width: 15px;
+            height: 15px;
+        }
+
+        /* Hobbies & Dislikes */
+        .lists-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        #hobbies-heading {
+            margin-bottom: 10px;
+        }
+
+        #dislikes-heading {
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 480px) {
+            .lists-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        section.list-section h3 {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-hint);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-bottom: 10px;
+        }
+
+        .chip-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .chip-list li {
+            font-size: 13px;
+            padding: 5px 12px;
+            border-radius: 9999px;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+        }
+
+        [data-testid="test-user-hobbies"] li {
+            background: var(--success-bg);
+            color: var(--success-text);
+            border-color: #d4e6c4;
+        }
+
+        [data-testid="test-user-dislikes"] li {
+            background: var(--coral-bg);
+            color: var(--coral-text);
+            border-color: #f5d9d0;
+        }
+
+        /* Responsive */
+        @media (max-width: 520px) {
+            .card-body {
+                padding: 3rem 1.25rem 1.5rem;
+            }
+
+            h2[data-testid="test-user-name"] {
+                font-size: 19px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <article data-testid="test-profile-card" aria-label="User profile card">
+
+        <!-- Hero band -->
+        <div class="card-hero" aria-hidden="true">
+            <div class="avatar-wrapper">
+                <figure class="avatar-figure">
+                    <img data-testid="test-user-avatar"
+                        src="https://avatars.githubusercontent.com/u/65787589?v=4&size=64"
+                        alt="Profile photo of Uche, Frontend developer" width="84" height="84" />
+                </figure>
+            </div>
+        </div>
+
+        <div class="card-body">
+
+            <header>
+                <div class="name-row">
+                    <h2 data-testid="test-user-name">Uchenna Chukwu</h2>
+                    <span class="role-badge">Frontend Developer</span>
+                </div>
+            </header>
+
+            <p data-testid="test-user-bio">
+                Crafting fast, scalable, and accessible web interfaces with a focus on clean UI, performance, and
+                developer experience.Passionate about design
+                systems, usability, and writing maintainable UI code.
+
+            </p>
+
+            <!-- Current Time -->
+            <div class="time-row">
+                <span class="time-label">Current epoch time</span>
+                <span data-testid="test-user-time" id="epochTime" aria-live="polite" role="status"></span>
+            </div>
+
+            <hr class="divider" />
+
+            <!-- Social Links -->
+            <nav data-testid="test-user-social-links" aria-label="Social profiles">
+                <p class="section-label">Online</p>
+                <ul class="social-list" role="list">
+                    <li>
+                        <a href="https://twitter.com/Ucee_14" target="_blank" rel="noopener noreferrer"
+                            data-testid="test-user-social-twitter">
+                            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.734-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                            Twitter
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/Yhucee14" target="_blank" rel="noopener noreferrer"
+                            data-testid="test-user-social-github">
+                            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                            </svg>
+                            GitHub
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                            data-testid="test-user-social-linkedin">
+                            <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                            LinkedIn
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <hr class="divider" />
+
+            <!-- Hobbies & Dislikes -->
+            <div class="lists-grid">
+                <section aria-labelledby="hobbies-heading">
+                    <h3 id="hobbies-heading">Hobbies</h3>
+                    <ul data-testid="test-user-hobbies" class="chip-list" role="list">
+                        <li>Ceramics</li>
+                        <li>Hiking</li>
+                        <li>Jazz piano</li>
+                        <li>Birdwatching</li>
+                        <li>Film photography</li>
+                    </ul>
+                </section>
+
+                <section aria-labelledby="dislikes-heading">
+                    <h3 id="dislikes-heading">Dislikes</h3>
+                    <ul data-testid="test-user-dislikes" class="chip-list" role="list">
+                        <li>Early meetings</li>
+                        <li>Comic Sans</li>
+                        <li>Slow internet</li>
+                        <li>Pineapple on pizza</li>
+                    </ul>
+                </section>
+            </div>
+
+        </div>
+    </article>
+
+    <script>
+        const timeEl = document.getElementById('epochTime');
+
+        function updateTime() {
+            if (timeEl) {
+                timeEl.textContent = Date.now();
+            }
+        }
+
+        updateTime();
+        setInterval(updateTime, 800);   // Updates every 800ms for smooth live feel
+    </script>
+
+</body>
+
+</html>
