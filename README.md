@@ -48,10 +48,10 @@ A clean, accessible, and fully testable **Profile Card** component built with se
 
 ## 🚀 Live Demo
 
-[View Live Demo](https://your-deployed-url-here.vercel.app)  
+[View Live Demo](profile-card-gray-beta.vercel.app)  
 
 ## 🛠️ How to Run Locally
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Yhucee14/task-todo.git# profile-card
+   git clone https://github.com/Yhucee14/profile-card.git
