@@ -48,7 +48,7 @@ A clean, accessible, and fully testable **Profile Card** component built with se
 
 ## 🚀 Live Demo
 
-[View Live Demo] profile-card-gray-beta.vercel.app 
+[View Live Demo] ([profile-card-gray-beta.vercel.app)](https://profile-card-gray-beta.vercel.app/) 
 
 ## 🛠️ How to Run Locally
 
